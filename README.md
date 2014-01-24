@@ -16,7 +16,7 @@ Role Variables
 The variables that can be passed to this role and a brief description about
 them are as follows.
 
-Remember that you **must chance** these variables or else msmtp will not be able to send mails!
+Remember that you **must change** these variables or else msmtp will not be able to send mails!
 
 	mail:
 	  # smtp host to be used
