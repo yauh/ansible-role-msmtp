@@ -33,7 +33,7 @@ Remember that you **must chance** these variables or else msmtp will not be able
 Examples
 ========
 
-Set up complete CI environment on all CI hosts
+Set up mailing functionality on all servers
 
 	- hosts: all
 	  sudo: True
