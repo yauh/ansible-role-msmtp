@@ -1,6 +1,6 @@
 ---
-# file: roles/mail/tasks/main.yml
+# file: roles/role-msmtp/tasks/main.yml
 
-- include: mail_debian.yml
+- include: msmtp_debian.yml
   when: ansible_distribution in [ 'Debian', 'Ubuntu' ]
   
