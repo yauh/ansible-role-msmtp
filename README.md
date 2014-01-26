@@ -19,16 +19,11 @@ them are as follows.
 Remember that you **must change** these variables or else msmtp will not be able to send mails!
 
 	mail:
-	  # smtp host to be used
-	  host: smtp.gmail.com
-	  # smtp port to be used - 587 for SSL
-	  port: 587
-	  # account name to identify against the smtp server
-	  user: youraddress@gmail.com
-	  # password for SMTP server in clear text
-	  password: password
-	  # from address to be used for sending email
-	  from_address: server@example.org
+	  host: smtp.gmail.com              # smtp host to be used
+	  port: 587                         # smtp port to be used - e.g. 25 or 587
+	  user: youraddress@gmail.com       # smtp account name 
+	  password: password                # smtp password
+	  from_address: server@example.org  # sender address and used as recipient for test mail
 
 Examples
 ========
