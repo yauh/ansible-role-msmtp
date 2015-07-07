@@ -1,14 +1,12 @@
-defaults
+aliases /etc/msmtp_aliases
 tls on
-tls_starttls on
-tls_trust_file /etc/ssl/certs/ca-certificates.crt
-port 25
+tls_trust_file {{ msmtp_tls_trust_file }}
+tls_certcheck {{ msmtp_tls_certcheck }}
 
-account default
-host {{ mail.host }}
-port {{ mail.port }}
+from {{ msmtp_from | default(ansible_hostname + '@' + ansible_domain, true) }}
+
 auth on
-user {{ mail.user }}
-password {{ mail.password }}
-from {{ mail.from_address }}
-logfile /var/log/msmtp.log
+host {{ msmtp_hub_server }}
+port {{ msmtp_hub_port }}
+user {{ msmtp_hub_user }}
+password {{ msmtp_hub_pass }}

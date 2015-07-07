@@ -1,56 +1,45 @@
-MSMTP
-=====
+# yauh.msmtp
+Ansible role for installing msmtp mail transport agent
 
-This role installs and configures the leightweight smtp client msmtp. It can be used to replace sendmail and use an SMTP server such as GMail to send mails directly instead of requiring you to create a mail server on your machine with e.g. smarthosts.
+## Requirements
+SMTP server that msmtp may use for sending emails
 
-It also sends a test mail to the defined from_address.
+## Role Variables
+All emails sent via the `sendmail` or `mail` commands will be delivered to `msmtp_default_recipient`. The sender address is `msmtp_from`. SMTP credentials are configured using the `msmtp_hub_*` variables.
 
-Requirements
-------------
+TLS certificate checks are enabled using `msmtp_tls_certcheck` and the trust file is configured via `msmtp_tls_trust_file`.
 
-This role requires Ansible 1.4 or higher and platform requirements are listed in the metadata file.
+This role may send a testmail unless `msmtp_send_testmail` is set to `false`.
 
-Role Variables
---------------
+```
+msmtp_default_recipient: admin@example.org
+msmtp_from: tester@example.org
+msmtp_hub_pass: test
+msmtp_hub_port: 587
+msmtp_hub_server: smtp.gmail.com
+msmtp_hub_user: test@gmail.com
+msmtp_tls_certcheck: 'on'
+msmtp_tls_trust_file: /etc/ssl/certs/ca-certificates.crt
+msmtp_send_testmail: yes
+```
 
-The variables that can be passed to this role and a brief description about
-them are as follows.
-
-Remember that you **must change** these variables or else msmtp will not be able to send mails!
-
-	mail:
-	  host: smtp.gmail.com              # smtp host to be used
-	  port: 587                         # smtp port to be used - e.g. 25 or 587
-	  user: youraddress@gmail.com       # smtp account name 
-	  password: password                # smtp password
-	  from_address: server@example.org  # sender address and used as recipient for test mail
-
-Examples
-========
-
-Set up mailing functionality on all servers
-
-	- hosts: all
-	  sudo: True
-	  roles:
-	     - { role: role-msmtp, tags: msmtp}
-
-
-Dependencies
-------------
-
+## Dependencies
 None
 
-License
--------
+## Example Playbook
+In order to specify the SMTP credentials it is advisable to either use a local variable file or possibly even [Ansible vault](http://docs.ansible.com/playbooks_vault.html).
 
+``` `
+
+- hosts: all
+- roles:
+  - { role: yauh.msmtp, msmtp_send_testmail: false }
+```
+
+## License
 BSD
 
-Author Information
-------------------
+## Author Information
+Stephan Hochhaus stephan@yauh.de
 
-Stephan Hochhaus <stephan@yauh.de>
-
-[yauh.de](http://yauh.de)
-
-
+[https://github.com/yauh](https://github.com/yauh)

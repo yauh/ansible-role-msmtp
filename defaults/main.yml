@@ -1,7 +1,11 @@
 ---
-mail:
-  host: smtp.gmail.com
-  port: 587
-  user: username@gmail.com
-  password: password
-  from_address: mail@example.org
+# defaults file for yauh.msmtp
+msmtp_default_recipient: admin@example.org
+msmtp_from: tester@example.org
+msmtp_hub_pass: test
+msmtp_hub_port: 587
+msmtp_hub_server: smtp.gmail.com
+msmtp_hub_user: test@gmail.com
+msmtp_send_testmail: yes
+msmtp_tls_certcheck: 'on'
+msmtp_tls_trust_file: /etc/ssl/certs/ca-certificates.crt

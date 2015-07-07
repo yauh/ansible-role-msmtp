@@ -1,6 +1,28 @@
 ---
-# file: roles/role-msmtp/tasks/main.yml
+# tasks file for yauh.msmtp
+- name: Install packages for msmtp and mailx
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - msmtp-mta
+    - heirloom-mailx
+    - ca-certificates
 
-- include: msmtp_debian.yml
-  when: ansible_distribution in [ 'Debian', 'Ubuntu' ]
-  
+- name: Ensure to remove other MTAs
+  apt: pkg={{ item }} state=removed
+  with_items:
+    - exim
+    - postfix
+
+- name: create msmtp config
+  template: >
+    src=msmtprc.j2 dest=/etc/msmtprc
+    owner=root group=root mode=644
+
+- name: create msmtp aliases
+  template: >
+    src=msmtp_aliases.j2 dest=/etc/msmtp_aliases
+    owner=root group=root mode=644
+
+- name: sending a testmail
+  shell: echo "Configured msmtp for $(hostname -f) using ansible" | mail -s "[$(hostname -f)] MSMTP configured" {{ msmtp_default_recipient }}
+  when: msmtp_send_testmail
