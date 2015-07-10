@@ -1,5 +1,5 @@
 # yauh.msmtp
-Ansible role for installing msmtp mail transport agent
+Ansible role for setting up msmtp mail transport agent
 
 ## Requirements
 SMTP server that msmtp may use for sending emails

@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Stephan Hochhaus
-  description: Installs msmtp mail transport agent
+  description: Set up msmtp mail transport agent
   company: freelance
   license: BSD
   min_ansible_version: 1.7
